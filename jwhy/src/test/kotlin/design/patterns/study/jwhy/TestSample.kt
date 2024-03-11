@@ -6,12 +6,25 @@ package design.patterns.study.jwhy
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import java.math.BigInteger
 
-class TestSample {
+class SequenceTest {
     @Test
-    @DisplayName("샘플용")
-    fun testSample() {
-        val answer = 0
-        assertEquals(0, answer)
+    @DisplayName("피보나치 테스트")
+    fun fibonacciTest() {
+        val fibonacci: Sequence<BigInteger> = sequence {
+            var first = 0.toBigInteger()
+            var second = 1.toBigInteger()
+            while (true) {
+                println("before first = ${first}")
+                yield(first)
+                println("after first = ${first}")
+                val temp = first
+                first += second
+                second = temp
+            }
+        }
+
+        println(fibonacci.take(10).toList())
     }
 }

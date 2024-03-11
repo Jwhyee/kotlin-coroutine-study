@@ -16,14 +16,14 @@
 
 ## 참여 인원
 
-|[Jwhyee](https://github.com/Jwhyee)|[Jaeeun1083](https://github.com/Jaeeun1083)|[lee-ji-hoon](https://github.com/lee-ji-hoon)|
-|---|---|---|
-|<img src="https://avatars.githubusercontent.com/u/82663161?v=4" width= 150px/>|<img src="https://avatars.githubusercontent.com/u/78838791?v=4" width = 150px/>|<img src="https://avatars.githubusercontent.com/u/53300830?v=4" width= 150px />|
+| [Jwhyee](https://github.com/Jwhyee)                                            | [Jaeeun1083](https://github.com/Jaeeun1083)                                     | [lee-ji-hoon](https://github.com/lee-ji-hoon)                                   |
+|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| <img src="https://avatars.githubusercontent.com/u/82663161?v=4" width= 150px/> | <img src="https://avatars.githubusercontent.com/u/78838791?v=4" width = 150px/> | <img src="https://avatars.githubusercontent.com/u/53300830?v=4" width= 150px /> |
 ## 정리
 
-| 장   | 제목                                  | 날짜 | 링크 |
-| ---- | ------------------------------------- | ---- | ---- |
-| 제1장 | 코틀린 코루틴 이해하기                                  |       |       |
-| 제2장 | 코틀린 코루틴 라이브러리          | |     |
-| 제3장 | 채널과 플로우                              |      |      |
-| 제4장 | 코틀린 코루틴 적용하기                            |      |      |
+| 장    | 제목            | 날짜      | 링크                                                        |
+|------|---------------|---------|-----------------------------------------------------------|
+| 제 1부 | 코틀린 코루틴 이해하기  | 3/10(월) | https://github.com/Jwhyee/kotlin-coroutine-study/issues/1 |
+| 제 2부 | 코틀린 코루틴 라이브러리 |         |                                                           |
+| 제 3부 | 채널과 플로우       |         |                                                           |
+| 제 4부 | 코틀린 코루틴 적용하기  |         |                                                           |

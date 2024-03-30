@@ -14,8 +14,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // coroutine
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2")
 }
 
 tasks.named<Test>("test") {

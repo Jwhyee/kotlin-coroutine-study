@@ -7,6 +7,31 @@ val handler = CoroutineExceptionHandler { ctx, e ->
 }
 
 fun main(): Unit = runBlocking {
+    val job = SupervisorJob()
+    launch(job) {
+        println(this.coroutineContext.job)
+        println("1 : $job")
+        launch {
+            println(this.coroutineContext.job)
+            println("2-1 : $job")
+            delay(1000)
+            throw Error("Some Error")
+        }
+        launch {
+            println(this.coroutineContext.job)
+            println("3-1 : $job")
+            delay(2000)
+            println("Will be not printed")
+            println("3-3 : $job")
+        }
+    }
+    println("4 : $job")
+    delay(3000)
+    println("5 : $job")
+    println("Done")
+}
+
+fun coroutineTest(): Unit = runBlocking {
     val scope = CoroutineScope(SupervisorJob() + handler)
     scope.launch {
         delay(1000)

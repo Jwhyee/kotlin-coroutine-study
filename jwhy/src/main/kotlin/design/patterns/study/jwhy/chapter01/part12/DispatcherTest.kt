@@ -10,6 +10,7 @@ suspend fun main() {
 //   nextLongTest()
 //   sleepTest()
    mixTest()
+//   parallelismTest()
 }
 
 suspend fun nextLongTest() = coroutineScope {
@@ -38,6 +39,8 @@ suspend fun sleepTest() {
 }
 
 suspend fun mixTest() = coroutineScope {
+   delay(100)
+   yield()
    launch(Dispatchers.Default) {
       println("Running Default : ${Thread.currentThread().name}")
       withContext(Dispatchers.IO) {
@@ -51,6 +54,7 @@ suspend fun parallelismTest(): Unit = coroutineScope {
    launch {
       val dispatcher = Dispatchers.IO
          .limitedParallelism(100)
+      printCoroutinesTime(dispatcher)
    }
 }
 

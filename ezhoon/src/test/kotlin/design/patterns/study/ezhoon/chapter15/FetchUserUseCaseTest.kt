@@ -23,12 +23,12 @@ class FetchUserUseCaseTest : BaseTest() {
 
     /**
      * given
-     * - getName() [GET_NAME_DELAY]
-     * - getFriends() [GET_FRIENDS_DELAY]
-     * - getProfile() [GET_PROFILE_DELAY]
+     * - getName(): "ezhoon" / [GET_NAME_DELAY]
+     * - getFriends(): [emptyList] / [GET_FRIENDS_DELAY]
+     * - getProfile(): "profile" / [GET_PROFILE_DELAY]
      *
      * when
-     * - fetchUserData()
+     * - fetchUserData(): [coroutine.study.sample.ezhoon.chapter15.UserData]
      *
      * then
      * - name = "ezhoon"
@@ -42,33 +42,32 @@ class FetchUserUseCaseTest : BaseTest() {
             dispatcher = mainCoroutineExtensions.testDispatcher
         )
         coEvery { userRepo.getName() } coAnswers {
-            delay(GET_NAME_DELAY)
+            delay(GET_NAME_DELAY.milliseconds)
             "ezhoon"
         }
 
         coEvery { userRepo.getFriends() } coAnswers {
-            delay(GET_FRIENDS_DELAY)
+            delay(GET_FRIENDS_DELAY.milliseconds)
             emptyList()
         }
 
         coEvery { userRepo.getProfile() } coAnswers {
-            delay(GET_PROFILE_DELAY)
+            delay(GET_PROFILE_DELAY.milliseconds)
             "profile"
         }
 
         // when
         val user = fetchUserUseCase.fetchUserData()
-        advanceTimeBy(800)
 
-        // then u
+        // then
         user.name shouldBe "ezhoon"
-        currentTime shouldBe GET_PROFILE_DELAY
+        currentTime.toInt() shouldBe GET_PROFILE_DELAY
     }
 
     companion object {
-        private val GET_PROFILE_DELAY = 800.milliseconds
-        private val GET_FRIENDS_DELAY = 700.milliseconds
-        private val GET_NAME_DELAY = 600.milliseconds
+        private const val GET_PROFILE_DELAY = 800
+        private const val GET_FRIENDS_DELAY = 700
+        private const val GET_NAME_DELAY = 600
     }
 }
 

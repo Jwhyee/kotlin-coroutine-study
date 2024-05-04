@@ -20,15 +20,11 @@ abstract class BaseTest {
 
 class MainCoroutineExtensions : BeforeEachCallback, AfterEachCallback {
 
-    lateinit var scheduler: TestCoroutineScheduler
-        private set
+    private val scheduler: TestCoroutineScheduler = TestCoroutineScheduler()
 
-    lateinit var testDispatcher: TestDispatcher
-        private set
+    val testDispatcher: TestDispatcher = StandardTestDispatcher(scheduler)
 
     override fun beforeEach(p0: ExtensionContext?) {
-        scheduler = TestCoroutineScheduler()
-        testDispatcher = StandardTestDispatcher(scheduler)
         Dispatchers.setMain(testDispatcher)
     }
 

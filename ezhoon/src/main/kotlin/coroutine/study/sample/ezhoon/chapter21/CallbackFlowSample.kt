@@ -5,53 +5,25 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlin.time.Duration.Companion.seconds
 
-fun interface LocationCallback {
-    fun onLocationChanged(location: String)
+suspend fun getData(): Int {
+    delay(1000)
+    1.seconds
+    throw Exception("tawet")
+    return 10
 }
 
-class LocationManager {
-    private var callback: LocationCallback? = null
-
-    fun startLocationUpdates(callback: LocationCallback) {
-        this.callback = callback
-        GlobalScope.launch {
-            repeat(5) {
-                delay(1000L)
-                println("callback $it")
-                callback.onLocationChanged("Location $it")
-            }
-        }
+suspend fun main() = supervisorScope {
+    runCatching {
+        val test = async { getData() }
+        val testResult = test.await()
+        println(testResult)
+    }.onSuccess {
+        println("onSuccess")
+    }.onFailure {
+        println("onFailure $it")
     }
 
-    fun stopLocationUpdates() {
-        callback = null
-    }
-}
-
-fun locationFlow(locationManager: LocationManager): Flow<String> = callbackFlow {
-    val callback = LocationCallback { location ->
-        trySend(location)
-    }
-    locationManager.startLocationUpdates(callback)
-
-    awaitClose {
-        println("await close")
-        locationManager.stopLocationUpdates()
-    }
-}
-
-fun main() = runBlocking {
-    val locationManager = LocationManager()
-    val job = launch {
-        locationFlow(locationManager)
-            .flowOn(Dispatchers.IO)
-            .collect { location ->
-                println("Collected: $location")
-            }
-    }
-
-    delay(7000L)
-    println("cancelAndJoin()")
-    job.cancelAndJoin()
+    delay(10000)
 }
